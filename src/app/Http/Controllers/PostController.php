@@ -29,7 +29,6 @@ class PostController extends Controller
 
         $posts->title = $request->title;
         $posts->description = $request->description;
-
         $posts->save();
 
         return redirect()->route('index')->with('success', 'Posts Added successfully.');

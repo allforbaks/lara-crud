@@ -23,5 +23,7 @@
 </tr>
 <br>
 @endforeach
+
+<a href="/create">create</a>
 </body>
 </html>

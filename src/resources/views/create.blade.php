@@ -11,10 +11,10 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body class="antialiased">
-        <form action="post" action="{{ route('students.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('store') }}" enctype="multipart/form-data">
             @csrf
-            <input type="text" placeholder="title" class="form-title">
-            <input type="textarea" placeholder="description" class="form-description">
+            <input type="text" name='title' placeholder="title" class="form-title">
+            <input type="textarea" name='description' placeholder="description" class="form-description">
             <button class="form-button">Send</button>
         </form>
 
