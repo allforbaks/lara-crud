@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('edit', compact('post'));
     }
 
     /**
@@ -81,7 +81,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' =>  'required',
+            'description' =>  'required',
+        ]);
+
+        $post = post::find($request->hidden_id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+
+        return redirect()->route('posts.index')->with('success', 'Post Data has been updated successfully');
     }
 
     /**

@@ -9,6 +9,8 @@
 
 <br>
 
-<a href="{{ route('posts.index') }}">Home</a>
+<a href="{{ route('posts.index') }}">Home</a><br>
+
+<a href="{{ route('posts.edit', $post->id) }}">Edit</a>
 
 @endsection
