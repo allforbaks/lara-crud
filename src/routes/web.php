@@ -13,4 +13,4 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::resource('/', PostController::class);
+Route::resource('posts', PostController::class);

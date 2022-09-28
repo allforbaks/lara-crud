@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('template')
+
+@section('content')
+
     <h1>Post list</h1>
     @if($message = Session::get('success'))
 
@@ -20,10 +15,19 @@
 <tr>
     <td>{{ $post->title }}</td>
     <td>{{ $post->description }}</td>
+    <td>
+        <form method="post" action="{{ route('posts.destroy', $post->id) }}">
+            @csrf
+            @method('DELETE')
+            <a href="{{ route('posts.show', $post->id) }}">View</a>
+            <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
+            <input type="submit" value="Delete" />
+        </form>
+    </td>
 </tr>
 <br>
 @endforeach
 
-<a href="/create">create</a>
-</body>
-</html>
+<a href="{{ route('posts.create') }}">create</a>
+
+@endsection
