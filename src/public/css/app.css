@@ -1,16 +1,1 @@
-form {
-    background-color: darkseagreen;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
 
-.form-title, .form-description {
-    border: 1px solid black;
-}
-
-.form-button {
-    background-color: chartreuse;
-    border: 1px solid silver;
-}
