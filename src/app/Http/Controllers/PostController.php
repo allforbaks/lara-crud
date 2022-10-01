@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\BaseController;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -38,15 +39,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $data = $request->validated();
-
-        $post = Post::create($data);
-
-        // $posts = new Post;
-
-        // $posts->title = $request->title;
-        // $posts->description = $request->description;
-        // $posts->save();
+        $this->service->store($request);
 
         return redirect()->route('posts.index')->with('success', 'Post Added successfully.');
     }
@@ -82,8 +75,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $data = $request->validated();
-        $post->update($data);
+        $this->service->update($request, $post);
 
         return redirect()->route('posts.index')->with('success', 'Post Data has been updated successfully');
     }
