@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -34,18 +36,17 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' =>  'required',
-            'description' =>  'required',
-        ]);
+        $data = $request->validated();
 
-        $posts = new Post;
+        $post = Post::create($data);
 
-        $posts->title = $request->title;
-        $posts->description = $request->description;
-        $posts->save();
+        // $posts = new Post;
+
+        // $posts->title = $request->title;
+        // $posts->description = $request->description;
+        // $posts->save();
 
         return redirect()->route('posts.index')->with('success', 'Post Added successfully.');
     }
@@ -79,17 +80,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' =>  'required',
-            'description' =>  'required',
-        ]);
-
-        $post = post::find($request->hidden_id);
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->save();
+        $data = $request->validated();
+        $post->update($data);
 
         return redirect()->route('posts.index')->with('success', 'Post Data has been updated successfully');
     }
