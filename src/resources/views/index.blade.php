@@ -28,6 +28,9 @@
 <br>
 @endforeach
 
-<a href="{{ route('posts.create') }}">create</a>
+<a href="{{ route('posts.create') }}">create</a><br>
 
+<div>
+    {{ $posts->links() }}
+</div>
 @endsection
