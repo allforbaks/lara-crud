@@ -13,7 +13,7 @@
 @foreach($posts as $post)
 
 <tr>
-    <td>{{ $post->title }}</td>
+    <td>{{ $post->title }}</td><br>
     <td>{{ $post->description }}</td>
     <td>
         <form method="post" action="{{ route('posts.destroy', $post->id) }}">
